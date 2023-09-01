@@ -3,9 +3,10 @@ import theme from "../../theme";
 import {AUTH_TOKEN} from "../../constants";
 import React, { useState } from "react";
 import { Box, Button, TextField } from "@mui/material";
-
+import { useNavigate } from "react-router-dom";
 
 function LoginPage(props) {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -34,6 +35,7 @@ function LoginPage(props) {
         const data = await response.json();
         const authToken = data.token;
         localStorage.setItem("authToken", authToken);
+        navigate('/trips')
         // Store the token in localStorage or global state (based on your state management choice).
         console.log(authToken)
         // Redirect the user to the home page or another protected page.

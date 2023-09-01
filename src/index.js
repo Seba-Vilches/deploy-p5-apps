@@ -12,14 +12,13 @@ import {
     createHttpLink,
     InMemoryCache
 } from '@apollo/client';
-//import {AUTH_TOKEN} from "./constants";
-const AUTH_TOKEN = localStorage.getItem("authToken");
+
 
 const authLink = setContext((_, {headers}) => {
     return {
         headers: {
             ...headers,
-            Authorization: `Bearer ${AUTH_TOKEN}`,
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
             // accessControlAllowOrigin: '*',
             // accessControlAllowHeaders: 'Origin, X-Requested-With, Content-Type, Accept',
         }
