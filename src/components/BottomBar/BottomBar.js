@@ -6,6 +6,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import TravelExploreIcon from '@mui/icons-material/TravelExplore';
 import ConnectingAirportsIcon from '@mui/icons-material/ConnectingAirports';
 import GroupsIcon from '@mui/icons-material/Groups';
+import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
 import { useNavigate } from "react-router-dom";
 
 function BottomBar(props) {
@@ -19,6 +20,13 @@ function BottomBar(props) {
     return (
         <BottomNavigation sx={{ width: '100%', position: 'fixed', bottom: 0, left: 0 }} value={value} onChange={handleChange}
         >
+            <BottomNavigationAction
+                label="Login"
+                value="login"
+                onClick={() => navigate('/login')}
+                icon={<AccessibilityNewIcon />}
+            />
+
             <BottomNavigationAction
                 label="Home"
                 value="home"
