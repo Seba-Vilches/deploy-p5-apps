@@ -7,16 +7,17 @@ import { Fab, Paper, Stack, styled } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import CircularProgress from "@mui/material/CircularProgress";
 import { generatePath, useNavigate } from "react-router-dom";
-import { useScrollDirection } from 'react-use-scroll-direction'
+import { useScrollDirection } from 'react-use-scroll-direction';
 
 const Item = styled(Paper)(({ theme }) => ({
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.primary,
-
+    maxWidth: '50%', // Set the maximum width for each trip card
+    flexBasis: '50%', // Set the flex basis to 50% for each trip card
 }));
 
-let email = "audie_johns@schuppe.name";
+let email = "gia@hermann-haley.co";
 
 const GET_DATA = gql`
 query {
@@ -29,10 +30,9 @@ query {
       description
       startDate
       endDate
-      }
     }
   }
-
+}
 `;
 
 function TripsPage(props, { email }) {
@@ -40,7 +40,7 @@ function TripsPage(props, { email }) {
     const [extended, setExtended] = useState(true);
     const [newtrip, setNewTrip] = useState(true);
 
-    const { isScrollingUp, isScrollingDown } = useScrollDirection()
+    const { isScrollingUp, isScrollingDown } = useScrollDirection();
 
     let ext = extended ? "extended" : "circular";
     let nt = newtrip ? 'New Trip' : "";
@@ -54,13 +54,12 @@ function TripsPage(props, { email }) {
             if (isScrollingDown) {
                 setExtended(false);
                 setNewTrip(false);
-
             }
         };
 
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [isScrollingUp, isScrollingDown])
+    }, [isScrollingUp, isScrollingDown]);
 
     const navigate = useNavigate();
 
@@ -75,31 +74,24 @@ function TripsPage(props, { email }) {
                 </Fab>
 
                 <Stack
-                    direction="column"
-                    justifyContent="flex-start"
-                    alignItems="center"
+                    direction="row" // Display trips in a row
+                    justifyContent="center" // Center the trips horizontally
+                    alignItems="flex-start" // Align the trips to the top
                     spacing={2}
                     overflow={"scroll"}
                     sx={{ mx: 2, mt: '90px' }}
                 >
-
                     <React.Fragment>
-
                         {data?.user?.trips?.map((trip) => (
-
                             <Item key={trip.id} trip={trip} >
                                 <TripCard trip={trip} />
                             </Item>
-
                         ))}
-
                     </React.Fragment>
                 </Stack>
             </div>
-
         </>
     );
 }
-
 
 export default TripsPage;
