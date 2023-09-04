@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import React from "react";
 import TripsPage from "./components/TripsPage";
+import TripPage from "./components/TripPage";
 import BottomBar from "./components/BottomBar/BottomBar";
 import TopNav from "./components/TopNav/TopNav";
 import HomePage from "./components/HomePage/HomePage";
@@ -29,6 +30,7 @@ function App() {
                         <Route exact path="/map" element={<MapPage />} />
                         <Route exact path="/search" element={<SearchPage />} />
                         <Route exact path="/login" element={<LoginPage />} />
+                        <Route exact path="/trip" element={<TripPage />} />
                     </Routes>
                 </div>
                 <BottomBar />

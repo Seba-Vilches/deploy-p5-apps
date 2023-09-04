@@ -35,15 +35,24 @@ query {
 }
 `;
 
-function TripsPage(props, { email }) {
+function TripsPage(props) {
     const { loading, error, data } = useQuery(GET_DATA);
     const [extended, setExtended] = useState(true);
     const [newtrip, setNewTrip] = useState(true);
+    const [selectedTripId, setSelectedTripId] = useState(null);
 
     const { isScrollingUp, isScrollingDown } = useScrollDirection();
 
     let ext = extended ? "extended" : "circular";
     let nt = newtrip ? 'New Trip' : "";
+
+    const navigate = useNavigate();
+
+    const handleTripCardClick = (tripId) => {
+        setSelectedTripId(tripId);
+        // Navigate to the individual trip page here
+        navigate(`/trip/${tripId}`); 
+    };
 
     useEffect(() => {
         const handleScroll = () => {
@@ -61,14 +70,12 @@ function TripsPage(props, { email }) {
         return () => window.removeEventListener('scroll', handleScroll);
     }, [isScrollingUp, isScrollingDown]);
 
-    const navigate = useNavigate();
-
     if (loading) return <CircularProgress />;
     if (error) return <h1>Error: {error.message}</h1>;
 
     return (
         <>
-            <div className={"GroupStack"} >
+            <div className={"GroupStack"}>
                 <Fab color="primary" aria-label="add" className={"NewTripFab"} id={"NewTrip"} variant={ext}>
                     <AddIcon /> <div id={"NewTripText"} >{nt}</div>
                 </Fab>
@@ -83,7 +90,7 @@ function TripsPage(props, { email }) {
                 >
                     <React.Fragment>
                         {data?.user?.trips?.map((trip) => (
-                            <Item key={trip.id} trip={trip} >
+                            <Item key={trip.id} trip={trip} onClick={() => handleTripCardClick(trip.id)}>
                                 <TripCard trip={trip} />
                             </Item>
                         ))}
