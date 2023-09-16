@@ -1,4 +1,4 @@
-//AIzaSyDRZ7yD6VG7yFqk9XvLGEZfrTmQ6TWr_R0
+
 import React, { useState, useCallback } from 'react';
 import { Box, Button, TextField } from "@mui/material";
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
@@ -19,7 +19,7 @@ function NewDestinationPage() {
 
     const [mapCenter, setMapCenter] = useState({ lat: 0, lng: 0 });
 
-    const googleMapsApiKey = 'AIzaSyDRZ7yD6VG7yFqk9XvLGEZfrTmQ6TWr_R0';
+    const googleMapsApiKey = ''; //Insertar api key aca
 
     const mapOptions = {
         center: mapCenter,

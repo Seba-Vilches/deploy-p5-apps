@@ -17,7 +17,7 @@ const Item = styled(Paper)(({ theme }) => ({
     flexBasis: '50%', // Set the flex basis to 50% for each trip card
 }));
 
-let email = "gia@hermann-haley.co";
+let email = "luanne@stark.com";
 
 const GET_DATA = gql`
 query {

@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import React from "react";
 import TripsPage from "./components/TripsPage";
-import TripPage from "./components/TripPage";
+import TripPage from "./components/TripPage/TripPage";
 import BottomBar from "./components/BottomBar/BottomBar";
 import TopNav from "./components/TopNav/TopNav";
 import HomePage from "./components/HomePage/HomePage";
@@ -26,12 +26,13 @@ function App() {
                     <TopNav />
                     <Routes>
                         <Route exact path="/" element={<HomePage />} />
+                        <Route path="/trip/:tripId" element={<TripPage />} /> {/* Use element */}
                         <Route exact path="/trips" element={<TripsPage />} />
                         <Route exact path="/friends" element={<FriendsPage />} />
                         <Route exact path="/map" element={<MapPage />} />
                         <Route exact path="/search" element={<SearchPage />} />
                         <Route exact path="/login" element={<LoginPage />} />
-                        <Route exact path="/trip" element={<TripPage />} />
+    
                         <Route exact path="/new-destination" element={<NewDestinationPage/>} />
                     </Routes>
                 </div>
