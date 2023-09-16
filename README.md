@@ -107,6 +107,10 @@ Deben realizar _commit_ de todo su trabajo al presente repositorio, generado des
 
 Pueden entregar su trabajo hasta el domingo 3/9 a las 23:59 hrs. 
 
+## Comentarios sobre la implementacion del lab 4:
+Creamos un componente "NewDestination", donde uno puede crear una destination ingresando un nombre, pais y ciudad, ademas se puede agregar la longitud y latitud al hacer click en el mapa. Se puede encontrar una ubicacion buscando por nombre o por ubicacion actual.
+Modificamos el backend para incluir la ruta que muestra las destinations para un trip. Como cada trip depende del mail, hay que escribir en el codigo del contenedor TripsPage el email respectivo, ademas dejamos las api_keys borradas, indicando donde se deben ingresar.
+
 ## Referencias
 
 * Álvarez, C. (2023). ICC 4203 Aplicaciones Móviles, Clase 4. Disponible en Canvas.
