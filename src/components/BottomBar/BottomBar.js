@@ -63,7 +63,7 @@ function BottomBar(props) {
             )}
             {!isAuthenticated ? null : (
             <BottomNavigationAction
-                label="Map"
+                label="Map/Destinations"
                 value="map"
                 onClick={() => navigate('/map')}
                 icon={<LocationOnIcon />}
