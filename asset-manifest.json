@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/deploy-p5-apps/static/css/main.b8481953.css",
+    "main.js": "/deploy-p5-apps/static/js/main.6ccd0806.js",
+    "static/js/787.cf3d4b08.chunk.js": "/deploy-p5-apps/static/js/787.cf3d4b08.chunk.js",
+    "index.html": "/deploy-p5-apps/index.html",
+    "main.b8481953.css.map": "/deploy-p5-apps/static/css/main.b8481953.css.map",
+    "main.6ccd0806.js.map": "/deploy-p5-apps/static/js/main.6ccd0806.js.map",
+    "787.cf3d4b08.chunk.js.map": "/deploy-p5-apps/static/js/787.cf3d4b08.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b8481953.css",
+    "static/js/main.6ccd0806.js"
+  ]
+}
