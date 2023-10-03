@@ -3,6 +3,7 @@ import { Box, Typography, Button } from '@mui/material';
 import QRCode from 'qrcode.react';
 import SpinnerOfDoom from '../HomePage/SpinnerOfDoom';
 import jsQR from 'jsqr';
+import FriendList from './FriendList/FriendList'
 
 function chunkString(str, chunkSize) {
   const chunks = [];
@@ -121,6 +122,36 @@ function FriendsPage(props) {
     img.src = imageDataUrl;
   };
 
+  const handleAddFriend = () => {
+    // Check if both userId and friendId are available
+    if (userId && friendId) {
+      const authToken = localStorage.getItem('authToken');
+
+      // Send a POST request to create a friendship
+      fetch('http://localhost:3000/api/v1/friendships', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authToken}`,
+        },
+        body: JSON.stringify({
+          user_id: userId,
+          friend_id: friendId,
+        }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Friendship created:', data);
+          // You may want to update the UI or perform additional actions
+        })
+        .catch(error => {
+          console.error('Error creating friendship:', error);
+        });
+    } else {
+      console.error('Both userId and friendId are required to create a friendship');
+    }
+  };
+
   return (
     <Box style={{ marginTop: '100px', textAlign: 'center', justifyContent: 'center' }}>
       {user ? (
@@ -129,7 +160,12 @@ function FriendsPage(props) {
           {userChunks.map((chunk, index) => (
             <QRCode key={index} value={chunk} size={256} />
           ))}<br></br>
-          <input type="file" accept="image/*" onChange={handleImageUpload} /><br></br>
+          <input type="file" accept="image/*" onChange={handleImageUpload} /><br></br><br></br>
+          <Button variant="contained" onClick={handleAddFriend}>
+            Add Friend
+          </Button>
+
+          <FriendList userId={userId} />
         </>
       ) : (
         <SpinnerOfDoom />

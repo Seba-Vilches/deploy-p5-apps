@@ -1,16 +1,24 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import './TopNav.css';
 import { Avatar, Box, Button, Container, Menu, MenuItem } from "@mui/material";
 import { Rectangle } from "@mui/icons-material";
 
 function TopNav(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [selectedFile, setSelectedFile] = useState(null); // State to store the selected file
   const open = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedFile(file);
   };
 
   return (
@@ -25,11 +33,10 @@ function TopNav(props) {
           onClick={handleClick}
           sx={{ position: 'absolute', top: '16px', left: '16px' }}
         >
-          <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" left={0} position={"absolute"} />
+          <Avatar alt="Travis Howard" src={selectedFile ? URL.createObjectURL(selectedFile) : "/static/images/avatar/2.jpg"} left={0} position={"absolute"} />
 
         </Button>
 
-        
         <Menu
           id="profile-menu"
           spacing={2}
@@ -39,13 +46,25 @@ function TopNav(props) {
           MenuListProps={{
             'aria-labelledby': 'profile-button',
           }}
-
         >
+          <MenuItem>
+            <label htmlFor="avatar-upload-input">
+              <Button component="span">
+                Upload Avatar image
+              </Button>
+            </label>
+            <input
+              type="file"
+              accept="image/*"
+              style={{ display: "none" }}
+              onChange={handleFileChange}
+              id="avatar-upload-input"
+            />
+          </MenuItem>
           <MenuItem onClick={handleClose}>Profile</MenuItem>
           <MenuItem onClick={handleClose}>Settings</MenuItem>
           <MenuItem onClick={handleClose}>Logout</MenuItem>
         </Menu>
-
       </Container>
     </Box>
   );
