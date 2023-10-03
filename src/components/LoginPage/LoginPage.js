@@ -35,6 +35,7 @@ function LoginPage(props) {
         const data = await response.json();
         const authToken = data.token;
         localStorage.setItem("authToken", authToken);
+        localStorage.setItem("email", email);
         navigate('/trips')
         // Store the token in localStorage or global state (based on your state management choice).
         console.log(authToken)
